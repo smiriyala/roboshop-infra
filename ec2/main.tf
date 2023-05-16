@@ -9,14 +9,18 @@ resource "aws_instance" "ec2" {
     instance_type = var.instance_type
     vpc_security_group_ids = [aws_security_group.sg.id]
     tags = {
-        name = var.component
+        Name = var.component
     }
+}
+
+
+resource "null_resource" "provisioner" {
 
     # running command once instance is up
     provisioner "remote-exec" {
 
         connection {
-          host = self.public_ip
+          host = aws_instance.ec2.public_ip
           user = "centos"
           password = "DevOps321"
         }
@@ -29,9 +33,7 @@ resource "aws_instance" "ec2" {
          ]
       
     }
-  
 }
-
 
 #crating new security group as part of resource creation
 resource "aws_security_group" "sg" {
