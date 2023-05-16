@@ -39,7 +39,7 @@ resource "aws_security_group" "sg" {
     description = "Allows TLS inbound traffic"
 
     ingress = {
-            description = "ALL"
+            description = "All"
             from_port = 0
             to_port = 0
             protocol = "-1"
@@ -47,7 +47,7 @@ resource "aws_security_group" "sg" {
         }
 
     egress = {
-        description = "ALL"
+        description = "All"
         from_port = 0
         to_port = 0
         protocol = "-1"
