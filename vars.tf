@@ -4,8 +4,8 @@ variable "instances" {
         name = "frontend"
         type = "t3.micro"
     }
-    mongodb = {
-        name = "mongodb"
+    mongo = {
+        name = "mongo"
         type = "t3.micro"
     }
     catalogue = {
