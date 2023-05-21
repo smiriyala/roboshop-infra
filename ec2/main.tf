@@ -18,13 +18,11 @@ resource "null_resource" "provisioner" {
 
     # running command once instance is up
     provisioner "remote-exec" {
-
         connection {
           host = aws_instance.ec2.public_ip
           user = "centos"
           password = "DevOps321"
         }
-
         inline = [ 
             "git clone https://github.com/smiriyala/roboshop-shell.git",
             "cd roboshop-shell",
