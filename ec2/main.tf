@@ -1,7 +1,11 @@
+#added local identity for image to be used.
+data "aws_caller_identity" "current"{}
+
 data "aws_ami" "ami" {
     most_recent = true
-    name_regex = "Centos-8-DevOps-Practice"
-    owners = ["973714476881"]
+    name_regex = "devops-practice-with-ansible"
+    #owners = ["973714476881"]
+    owners = [data.aws_caller_identity.current.account_id]
 }
 
 resource "aws_instance" "ec2" {
@@ -24,9 +28,10 @@ resource "null_resource" "provisioner" {
           password = "DevOps321"
         }
         inline = [ 
-            "git clone https://github.com/smiriyala/roboshop-shell.git",
-            "cd roboshop-shell",
-            "sudo bash ${var.component}.sh"
+            # "git clone https://github.com/smiriyala/roboshop-shell.git",
+            # "cd roboshop-shell",
+            # "sudo bash ${var.component}.sh"
+            "ansible-pull -i localhost, -U https://github.com/smiriyala/roboshop-ansible.git roboshop.yml -e role_name-${var.component}"
 
          ]
       
