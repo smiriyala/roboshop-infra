@@ -40,5 +40,9 @@ variable "instances" {
         name = "payment"
         type = "t3.micro"
     }
+    dispatch = {
+        name = "dispatch"
+        type = "t3.micro"
+    }
   }
 }
