@@ -1,17 +1,20 @@
 #added local identity for image to be used.
-data "aws_caller_identity" "current"{}
+
+# this is moved to data.tf file:)
+/* data "aws_caller_identity" "current"{}
 
 data "aws_ami" "ami" {
     most_recent = true
     name_regex = "devops-practice-with-ansible"
     #owners = ["973714476881"]
     owners = [data.aws_caller_identity.current.account_id]
-}
+} */
 
 resource "aws_instance" "ec2" {
     ami = data.aws_ami.ami.image_id
     instance_type = var.instance_type
     vpc_security_group_ids = [aws_security_group.sg.id]
+    iam_instance_profile = aws_iam_instance_profile.profile.name
     tags = {
         Name = var.component
     }
@@ -76,9 +79,70 @@ resource "aws_route53_record" "record" {
 }
 
 
-#variabled declared to be used in this module
+##creaeting IAM policy
+resource "aws_iam_policy" "ssm-policy" {
+  name        = "${var.env}-${var.component}-ssm"
+  path        = "/"
+  description = "${var.env}-${var.component}-ssm"
+
+  # Terraform's "jsonencode" function converts a
+  # Terraform expression result to valid JSON syntax.
+  policy = jsonencode({
+   "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "ec2.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+        }
+    ]
+  })
+}
+
+##Createing IAM role:
+resource "aws_iam_role" "test_role" {
+  name = "${var.env}-${var.component}-role"
+
+  # Terraform's "jsonencode" function converts a
+  # Terraform expression result to valid JSON syntax.
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Sid    = ""
+        Principal = {
+          Service = "ec2.amazonaws.com"
+        }
+      },
+    ]
+  })
+
+  tags = {
+    tag-key = "tag-value"
+  }
+}
+
+#Attaching Instance Profile: Instance profile, you cant attach role directly.
+resource "aws_iam_instance_profile" "profile" {
+  name = "${var.env}-${var.component}-role"
+  role = aws_iam_role.role.name
+}
+
+## Policy attachement, 
+resource "aws_iam_role_policy_attachment" "policy-attach" {
+  role       = aws_iam_role.role.name
+  policy_arn = aws_iam_policy.policy.arn
+}
+
+
+##This codd moved to vars.tf file in ec2
+/* #variabled declared to be used in this module
 variable "component" {}
 variable "instance_type" {}
 variable "env" {
     default = "dev"
-}
+} */
