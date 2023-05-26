@@ -90,19 +90,29 @@ resource "aws_iam_policy" "ssm-policy" {
   policy = jsonencode({
    "Version": "2012-10-17",
     "Statement": [
-        {
-            "Effect": "Allow",
-            "Principal": {
-                "Service": "ec2.amazonaws.com"
-            },
-            "Action": "sts:AssumeRole"
-        }
+      {
+        "Sid": "VisualEditor0",
+        "Effect": "Allow",
+        "Action": [
+          "ssm:GetParameterHistory",
+          "ssm:GetParametersByPath",
+          "ssm:GetParameters",
+          "ssm:GetParameter"
+        ],
+        "Resource": "arn:aws:ssm:us-east-1:934235628328:parameter/${var.env}.${var.component}"
+      },
+      {
+        "Sid": "VisualEditor1",
+        "Effect": "Allow",
+        "Action": "ssm:DescribeParameters",
+        "Resource": "*"
+      }
     ]
   })
 }
 
 ##Createing IAM role:
-resource "aws_iam_role" "test_role" {
+resource "aws_iam_role" "role" {
   name = "${var.env}-${var.component}-role"
 
   # Terraform's "jsonencode" function converts a
