@@ -78,7 +78,7 @@ resource "aws_route53_record" "record" {
   records = [aws_instance.ec2.private_ip]
 }
 
-
+/* 
 ##creaeting IAM policy
 resource "aws_iam_policy" "ssm-policy" {
 
@@ -147,7 +147,7 @@ resource "aws_iam_instance_profile" "profile" {
 resource "aws_iam_role_policy_attachment" "policy-attach" {
   role       = aws_iam_role.role.name
   policy_arn = aws_iam_policy.ssm-policy.arn
-}
+} */
 
 
 ##This codd moved to vars.tf file in ec2
