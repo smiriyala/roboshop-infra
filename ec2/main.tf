@@ -14,7 +14,7 @@ resource "aws_instance" "ec2" {
     ami = data.aws_ami.ami.image_id
     instance_type = var.instance_type
     vpc_security_group_ids = [aws_security_group.sg.id]
-    iam_instance_profile = aws_iam_instance_profile.profile.name
+    #iam_instance_profile = aws_iam_instance_profile.profile.name
     tags = {
         Name = var.component
     }
