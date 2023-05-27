@@ -81,6 +81,7 @@ resource "aws_route53_record" "record" {
 
 ##creaeting IAM policy
 resource "aws_iam_policy" "ssm-policy" {
+
   name        = "${var.env}-${var.component}-ssm"
   path        = "/"
   description = "${var.env}-${var.component}-ssm"
@@ -99,7 +100,7 @@ resource "aws_iam_policy" "ssm-policy" {
           "ssm:GetParameters",
           "ssm:GetParameter"
         ],
-        "Resource": "arn:aws:ssm:us-east-1:934235628328:parameter/${var.env}.${var.component}"
+        "Resource": "arn:aws:ssm:us-east-1:934235628328:parameter/${var.env}.${var.component}*"
       },
       {
         "Sid": "VisualEditor1",
