@@ -31,10 +31,10 @@ resource "null_resource" "provisioner" {
           password = "DevOps321"
         }
         inline = [ 
-          "git clone https://github.com/smiriyala/roboshop-shell.git",
+          /* "git clone https://github.com/smiriyala/roboshop-shell.git",
           "cd roboshop-shell",
-          "sudo bash ${var.component}.sh"
-            #"ansible-pull -i localhost, -U https://github.com/smiriyala/roboshop-ansible.git roboshop.yml -e role_name=${var.component}"
+          "sudo bash ${var.component}.sh" */
+          "ansible-pull -i localhost, -U https://github.com/smiriyala/roboshop-ansible.git roboshop.yml -e role_name=${var.component}"
 
          ]
       
