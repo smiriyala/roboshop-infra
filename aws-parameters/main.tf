@@ -3,7 +3,6 @@ resource "aws_ssm_parameter" "parameters" {
     name = var.parameters[count.index].name
     type = var.parameters[count.index].type
     value = var.parameters[count.index].value
-
 }
 
 #This variable values are reading from main.tfvars or whatever you used to pass
