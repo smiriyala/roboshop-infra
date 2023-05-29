@@ -14,7 +14,7 @@ resource "aws_instance" "ec2" {
     ami = data.aws_ami.ami.image_id
     instance_type = var.instance_type
     vpc_security_group_ids = [aws_security_group.sg.id]
-    #iam_instance_profile = aws_iam_instance_profile.profile.name
+    iam_instance_profile = "${var.env}-${var.component}-role"
     tags = {
         Name = var.component
     }
@@ -78,64 +78,55 @@ resource "aws_route53_record" "record" {
   records = [aws_instance.ec2.private_ip]
 }
 
-/* 
+
 ##creaeting IAM policy
 resource "aws_iam_policy" "ssm-policy" {
 
   name        = "${var.env}-${var.component}-ssm"
   path        = "/"
   description = "${var.env}-${var.component}-ssm"
-
-  # Terraform's "jsonencode" function converts a
-  # Terraform expression result to valid JSON syntax.
   policy = jsonencode({
     "Version": "2012-10-17",
     "Statement": [
-      {
-        "Sid": "VisualEditor0",
-        "Effect": "Allow",
-        "Action": [
-          "ssm:GetParameterHistory",
-          "ssm:GetParametersByPath",
-          "ssm:GetParameters",
-          "ssm:GetParameter"
-        ],
-        "Resource": "arn:aws:ssm:us-east-1:934235628328:parameter/${var.env}.${var.component}*"
-      },
-      {
-        "Sid": "VisualEditor1",
-        "Effect": "Allow",
-        "Action": "ssm:DescribeParameters",
-        "Resource": "*"
-      }
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "ssm:GetParameterHistory",
+                "ssm:GetParametersByPath",
+                "ssm:GetParameters",
+                "ssm:GetParameter"
+            ],
+            "Resource": "arn:aws:ssm:us-test-1:934235628328:parameter/${var.env}.${var.component}*"
+        },
+        {
+            "Sid": "VisualEditor1",
+            "Effect": "Allow",
+            "Action": "ssm:DescribeParameters",
+            "Resource": "*"
+        }
     ]
   })
 }
+
 
 ##Createing IAM role:
 resource "aws_iam_role" "role" {
   name = "${var.env}-${var.component}-role"
-
-  # Terraform's "jsonencode" function converts a
-  # Terraform expression result to valid JSON syntax.
   assume_role_policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Action = "sts:AssumeRole"
-        Effect = "Allow"
-        Sid    = ""
-        Principal = {
-          Service = "ec2.amazonaws.com"
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "ec2.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
         }
-      }
     ]
   })
-
-  tags = {
-    tag-key = "tag-value"
-  }
 }
+
 
 #Attaching Instance Profile: Instance profile, you cant attach role directly.
 resource "aws_iam_instance_profile" "profile" {
@@ -143,11 +134,12 @@ resource "aws_iam_instance_profile" "profile" {
   role = aws_iam_role.role.name
 }
 
+
 ## Policy attachement, 
 resource "aws_iam_role_policy_attachment" "policy-attach" {
   role       = aws_iam_role.role.name
   policy_arn = aws_iam_policy.ssm-policy.arn
-} */
+} 
 
 
 ##This codd moved to vars.tf file in ec2

@@ -10,10 +10,10 @@ git:
 # referring above git command as pre-req for dev-apply command.
 dev-apply: git
 	terraform init -backend-config=env-dev/state.tfvars
-	terraform apply -auto-approve -var-file=env-dev/dev.tfvars
+	terraform apply -auto-approve -var-file=env-dev/main.tfvars
 
 
 # referring above git command as pre-req for dev-destroy command.
 dev-destroy:
 	terraform init -backend-config=env-dev/state.tfvars
-	terraform destroy -auto-approve -var-file=env-dev/dev.tfvars
+	terraform destroy -auto-approve -var-file=env-dev/main.tfvars
