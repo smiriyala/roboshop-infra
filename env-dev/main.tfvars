@@ -32,7 +32,7 @@ instances = {
         type = "t3.small"
     }
     rebbitmq = {
-        name = "rebbitmq"
+        name = "rabbitmq"
         type = "t3.small"
     }
     payment = {
