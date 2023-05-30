@@ -43,7 +43,7 @@ parameters = [
   Environment=CATALOGUE_HOST={{ lookup('aws_ssm', '{{env}}.{{component}}.catalogue_host', region='us-east-1') }}
   Environment=CATALOGUE_PORT={{ lookup('aws_ssm', '{{env}}.{{component}}.catalogue_port', region='us-east-1') }} */
   { name = "dev.cart.redis_host", value = "redis-dev.devopsforyou.online", type = "String" },
-  { me = "dev.cart.catalogue_host", value = "mongodb://catalogue-dev.devopsforyou.online", type = "String" },
+  { name = "dev.cart.catalogue_host", value = "mongodb://catalogue-dev.devopsforyou.online", type = "String" },
   { name = "dev.cart.catalogue_port", value = "8080", type = "String" },
 
   //Dispatch Service
