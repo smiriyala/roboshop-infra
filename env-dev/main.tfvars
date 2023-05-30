@@ -3,7 +3,7 @@ instances = {
         name = "frontend"
         type = "t3.small"
     }
-    mongodb = {
+    /* mongodb = {
         name = "mongodb"
         type = "t3.small"
     }
@@ -42,7 +42,7 @@ instances = {
     dispatch = {
         name = "dispatch"
         type = "t3.small"
-    }
+    } */
 }
 
 env = "dev"
