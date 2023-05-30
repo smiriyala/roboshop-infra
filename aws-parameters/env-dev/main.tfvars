@@ -12,7 +12,7 @@ parameters = [
   Environment=MONGO_URL="{{ lookup('aws_ssm', '{{env}}.{{component}}.mongo_url', region='us-east-1') }}" */
   { name = "dev.user.mongo", value = "true", type = "String" },
   { name = "dev.user.redis_host", value = "redis-dev.devopsforyou.online", type = "String" },
-  { name = "dev.user.mongo_url", value = "shipping-dev.devopsforyou.online", type = "String" },
+  { name = "dev.user.mongo_url", value = "mongodb://mongodb-dev.devopsb71.online:27017/catalogue", type = "String" },
 
   //Shipping serice Details
   /* Environment=CART_ENDPOINT={{ lookup('aws_ssm', '{{env}}.{{component}}.cart_endpoint', region='us-east-1') }},
