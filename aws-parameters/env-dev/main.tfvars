@@ -1,3 +1,4 @@
+
 parameters = [
    //frontend Service Details
   { name = "dev.frontend.catalogue_url", value = "http://catalogue-dev.devopsforyou.online:8080/", type = "String" },
@@ -44,8 +45,9 @@ parameters = [
   Environment=CATALOGUE_HOST={{ lookup('aws_ssm', '{{env}}.{{component}}.catalogue_host', region='us-east-1') }}
   Environment=CATALOGUE_PORT={{ lookup('aws_ssm', '{{env}}.{{component}}.catalogue_port', region='us-east-1') }} */
   { name = "dev.cart.redis_host", value = "redis-dev.devopsforyou.online", type = "String" },
-  { name = "dev.cart.catalogue_host", value = "mongodb://catalogue-dev.devopsforyou.online", type = "String" },
+  { name = "dev.cart.catalogue_host", value = "catalogue-dev.devopsforyou.online", type = "String" },
   { name = "dev.cart.catalogue_port", value = "8080", type = "String" },
+
 
   //Dispatch Service
   /* Environment=AMQP_HOST=RABBITMQ-IP
