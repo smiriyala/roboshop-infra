@@ -1,3 +1,21 @@
+{ 
+  { name = "dev.user.mongo", value = "true", type = "String" },
+  { name = "dev.user.redis_host", value = "redis-dev.devopsb71.online", type = "String" },
+  { name = "dev.user.mongo_url", value = "mongodb://mongodb-dev.devopsb71.online:27017/catalogue", type = "String" },
+
+  { name = "dev.shipping.cart_endpoint", value = "cart-dev.devopsb71.online:8080", type = "String" },
+  { name = "dev.shipping.db_host", value = "mysql-dev.devopsb71.online", type = "String" },
+  { name = "dev.payment.cart_host", value = "cart-dev.devopsb71.online", type = "String" },
+  { name = "dev.payment.cart_port", value = "8080", type = "String" },
+  { name = "dev.payment.user_host", value = "user-dev.devopsb71.online", type = "String" },
+  { name = "dev.payment.user_port", value = "8080", type = "String" },
+  { name = "dev.payment.amqp_host", value = "rabbitmq-dev.devopsb71.online", type = "String" },
+  { name = "dev.catalogue.mongo", value = "true", type = "String" },
+  { name = "dev.catalogue.mongo_url", value = "mongodb://mongodb-dev.devopsb71.online:27017/users", type = "String" },
+  { name = "dev.cart.redis_host", value = "redis-dev.devopsb71.online", type = "String" },
+  { name = "dev.cart.catalogue_host", value = "catalogue-dev.devopsb71.online", type = "String" },
+  { name = "dev.cart.catalogue_port", value = "8080", type = "String" }
+
 
 parameters = [
    //frontend Service Details
@@ -13,7 +31,7 @@ parameters = [
   Environment=MONGO_URL="{{ lookup('aws_ssm', '{{env}}.{{component}}.mongo_url', region='us-east-1') }}" */
   { name = "dev.user.mongo", value = "true", type = "String" },
   { name = "dev.user.redis_host", value = "redis-dev.devopsforyou.online", type = "String" },
-  { name = "dev.user.mongo_url", value = "mongodb://mongodb-dev.devopsforyou.online:27017/catalogue", type = "String" },
+  { name = "dev.user.mongo_url", value = "mongodb://mongodb-dev.devopsforyou.online:27017/users", type = "String" },
 
   //Shipping serice Details
   /* Environment=CART_ENDPOINT={{ lookup('aws_ssm', '{{env}}.{{component}}.cart_endpoint', region='us-east-1') }},
@@ -33,11 +51,12 @@ parameters = [
   { name = "dev.payment.user_host", value = "user-dev.devopsforyou.online", type = "String" },
   { name = "dev.payment.user_port", value = "8080", type = "String" },
   { name = "dev.payment.amqp_host", value = "rabbitmq-dev.devopsforyou.online", type = "String" },
+  
   //Catalogue Serive
   /* Environment=MONGO={{ lookup('aws_ssm', '{{env}}.{{component}}.mongo', region='us-east-1') }}
   Environment=MONGO_URL="{{ lookup('aws_ssm', '{{env}}.{{component}}.mongo_url', region='us-east-1') }}" */
   { name = "dev.catalogue.mongo", value = "true", type = "String" },
-  { name = "dev.catalogue.mongo_url", value = "mongodb://mongodb-dev.devopsforyou.online:27017/users", type = "String" },
+  { name = "dev.catalogue.mongo_url", value = "mongodb://mongodb-dev.devopsforyou.online:27017/catalogue", type = "String" },
     
    //cart component
   /* Environment=REDIS_HOST={{ lookup('aws_ssm', '{{env}}.{{component}}.redis_host', region='us-east-1') }}
