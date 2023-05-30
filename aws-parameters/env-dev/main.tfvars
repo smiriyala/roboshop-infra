@@ -56,4 +56,28 @@ parameters = [
   Environment=AMQP_HOST={{ lookup('aws_ssm', '{{env}}.{{component}}.amqp_host', region='us-east-1') }}*/
   { name = "dev.dispatch.amqp_host", value = "dispatch-dev.devopsforyou.online", type = "String" }
 
-]   
+] 
+
+
+secrets = [
+  //total -11
+  //catalogue servie
+  { name = "dev.catalogue.user", value = "roboshop", type = "SecureString" },
+  //dispatch service
+  { name = "dev.dispatch.user", value = "roboshop", type = "SecureString" },
+  { name = "dev.dispatch.amqp_user", value = "roboshop", type = "SecureString" },
+  { name = "dev.dispatch.amqp_pass", value = "roboshop123", type = "SecureString" },
+  //Payment Service
+  { name = "dev.payment.amqp_user", value = "roboshop", type = "SecureString" },
+  { name = "dev.payment.amqp_pass", value = "roboshop123", type = "SecureString" },
+  //shipping
+  { name = "dev.shipping.user", value = "roboshop", type = "SecureString" },
+  //user service
+  { name = "dev.user.user", value = "roboshop", type = "SecureString" },
+  //mysql main has root password
+  { name = "dev.mysql.password", value = "RoboShop@1", type = "SecureString" },
+  //rabbitmq Serive user and pass
+  { name = "dev.rabbitmq.user", value = "roboshop", type = "SecureString" },
+  { name = "dev.rabbitmq.password", value = "roboshop123", type = "SecureString" }
+
+]
