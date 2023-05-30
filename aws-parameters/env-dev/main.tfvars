@@ -17,7 +17,7 @@ parameters = [
   //Shipping serice Details
   /* Environment=CART_ENDPOINT={{ lookup('aws_ssm', '{{env}}.{{component}}.cart_endpoint', region='us-east-1') }},
   Environment=DB_HOST={{ lookup('aws_ssm', '{{env}}.{{component}}.db_host', region='us-east-1') }}, */
-  { name = "dev.shipping.cart_endpoint", value = "cart-dev.devopsforyou.online", type = "String" },
+  { name = "dev.shipping.cart_endpoint", value = "cart-dev.devopsforyou.online:8080", type = "String" },
   { name = "dev.shipping.db_host", value = "mysql-dev.devopsforyou.online", type = "String" },
 
 
