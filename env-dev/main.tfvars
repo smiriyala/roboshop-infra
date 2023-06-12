@@ -12,6 +12,7 @@ vpc = {
 
             }
         }
+        
         private_subnets = {
             web = {
                 name = "websubnet"
