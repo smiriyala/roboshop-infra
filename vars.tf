@@ -1,5 +1,3 @@
 variable "env" {}
-variable "vpc_cidr" {}
-variable "tags" {
-  
-}
+variable "vpc" {}
+variable "tags" {}
