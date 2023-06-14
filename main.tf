@@ -11,7 +11,7 @@ module "vpc" {
 
 ##just help to see how the output would be...data
 # NOTE: It doenst return anything as it need be configured OUTPUT file in resource module.
-output "vpc" {
+output "vpcdata" {
   value = module.vpc
   
 }
