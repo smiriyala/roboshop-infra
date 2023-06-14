@@ -6,6 +6,8 @@ module "vpc" {
   tags = var.tags
   public_subnets = each.value[ "public_subnets" ]
   private_subnets = each.value[ "private_subnets"]
+  default_route_table = var.default_route_table
+  default_vpc_id = var.default_vpc_id
 }
 
 
