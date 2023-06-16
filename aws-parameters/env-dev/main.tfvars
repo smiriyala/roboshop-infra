@@ -78,7 +78,7 @@ secrets = [
   { name = "dev.mysql.password", value = "RoboShop@1", type = "SecureString" },
   //rabbitmq Serive user and pass
   { name = "dev.rabbitmq.user", value = "roboshop", type = "SecureString" },
-  { name = "dev.rabbitmq.password", value = "roboshop123", type = "SecureString" }
+  { name = "dev.rabbitmq.password", value = "roboshop123", type = "SecureString" },
 
 
   #Adding USSER NAME AND PASSWORDS FOR THE DOCDB PART OF tf-module-docdb
