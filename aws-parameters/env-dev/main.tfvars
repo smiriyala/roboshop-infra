@@ -83,6 +83,6 @@ secrets = [
 
   #Adding USSER NAME AND PASSWORDS FOR THE DOCDB PART OF tf-module-docdb
   { name = "dev.docdb.user", value = "admin1", type = "SecureString" },
-  { name = "dev.docdb.pass", value = "roboshop123", type = "SecureString" }
+  { name = "dev.docdb.pass", value = "Roboshop@1", type = "SecureString" }
 
 ]
