@@ -58,7 +58,7 @@ module "rds" {
 }
 
 #Creating ELASTIC CACHE for user login check service
-module "rds" {
+module "elasticache" {
   env = var.env
   source = "git::https://github.com/smiriyala/tf-module-elasticache.git"
   tags = var.tags
