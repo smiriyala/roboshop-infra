@@ -81,8 +81,12 @@ secrets = [
   { name = "dev.rabbitmq.password", value = "roboshop123", type = "SecureString" },
 
 
-  #Adding USSER NAME AND PASSWORDS FOR THE DOCDB PART OF tf-module-docdb
+  #Adding USSER NAME AND PASSWORDS FOR THE DOCDB PART OF tf-module-docdb repo
   { name = "dev.docdb.user", value = "admin1", type = "SecureString" },
-  { name = "dev.docdb.pass", value = "Roboshop1", type = "SecureString" }
+  { name = "dev.docdb.pass", value = "Roboshop1", type = "SecureString" },
+
+    #Adding USSER NAME AND PASSWORDS FOR THE RDS OF tf-module-rds repo
+  { name = "dev.rds.user", value = "admin1", type = "SecureString" },
+  { name = "dev.rds.pass", value = "Roboshop1", type = "SecureString" }
 
 ]

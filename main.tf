@@ -41,7 +41,7 @@ module "docdb" {
 
 
 #Creating RDS aurora 5.7 (Mysql) db
-/* module "rds" {
+module "rds" {
   env = var.env
   source = "git::https://github.com/smiriyala/tf-module-rds.git"
   tags = var.tags
@@ -54,4 +54,4 @@ module "docdb" {
   preferred_backup_window = each.value["preferred_backup_window"]
 
   
-} */
+}
