@@ -84,6 +84,11 @@ elasticache = {
         engine_version = "6.x"
         nun_cache_nodes = 1
         node_type = "cache_t3.micro"
+    }
+}
 
+rabbitmq = {
+    main = {
+        instance_type = "t3.micro"
     }
 }
