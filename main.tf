@@ -56,3 +56,19 @@ module "rds" {
   no_of_instances              = each.value ["no_of_instances"]
   
 }
+
+#Creating ELASTIC CACHE for user login check service
+module "rds" {
+  env = var.env
+  source = "git::https://github.com/smiriyala/tf-module-elasticache.git"
+  tags = var.tags
+  subnet_ids = local.db_subnet_ids
+
+  for_each = var.elasticache
+  engine                  = each.value["engine"]
+  engine_version          = each.value["engine_version"]
+  nun_cache_nodes = each.value["nun_cache_nodes"]
+  node_type = each.value["node_type"]
+  
+  
+}
