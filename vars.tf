@@ -10,3 +10,6 @@ variable "docdb" {}
 #Variable for RDS-aurora mysql
 variable "rds" {}
 variable "elasticache" {}
+
+##rabbitmq
+variable "rabbitmq" {}

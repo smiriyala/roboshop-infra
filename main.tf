@@ -36,7 +36,6 @@ module "docdb" {
   no_of_instances = each.value["no_of_instances"]
   instance_class = each.value["instance_class"]
 
-  
 }
 
 
@@ -52,23 +51,35 @@ module "rds" {
   engine_version          = each.value["engine_version"]
   backup_retention_period = each.value["backup_retention_period"]
   preferred_backup_window = each.value["preferred_backup_window"]
-  instance_class     = each.value["instance_class"]
-  no_of_instances              = each.value ["no_of_instances"]
+  instance_class          = each.value["instance_class"]
+  no_of_instances         = each.value ["no_of_instances"]
   
 }
 
 #Creating ELASTIC CACHE for user login check service
 module "elasticache" {
-  env = var.env
-  source = "git::https://github.com/smiriyala/tf-module-elasticache.git"
-  tags = var.tags
-  subnet_ids = local.db_subnet_ids
+  env                     = var.env
+  source                  = "git::https://github.com/smiriyala/tf-module-elasticache.git"
+  tags                    = var.tags
+  subnet_ids              = local.db_subnet_ids
 
-  for_each = var.elasticache
+  for_each                = var.elasticache
   engine                  = each.value["engine"]
   engine_version          = each.value["engine_version"]
-  nun_cache_nodes = each.value["nun_cache_nodes"]
-  node_type = each.value["node_type"]
+  nun_cache_nodes         = each.value["nun_cache_nodes"]
+  node_type               = each.value["node_type"]
   
+}
+
+#RabbitMQ - rathar than using aws service, we are creating EC2 Instance as Service doesnt 
+# Support to create cluster environment?
+module "rabbitmq" {
+  env                     = var.env
+  source                  = "git::https://github.com/smiriyala/tf-module-rabbitmq.git"
+  tags                    = var.tags
+  subnet_ids              = local.db_subnet_ids
+
+  for_each                = var.rabbitmq
+  instance_type    = each.value["instance_type"]
   
 }
