@@ -84,3 +84,18 @@ module "rabbitmq" {
   instance_type    = each.value["instance_type"]
   
 }
+
+#Module Load Balancer
+module "alb" {
+  env                     = var.env
+  source                  = "git::https://github.com/smiriyala/tf-module-alb.git"
+  tags                    = var.tags
+  name                    = var.name
+
+  for_each  = var.alb
+  name = each.value["name"]
+  internal = each.value["internal"]
+  load_balancer_type = each.value["load_balancer_type"]
+  subnets = lookup(local.subnet_ids, each.value["subnet_name"], null)
+  
+}
