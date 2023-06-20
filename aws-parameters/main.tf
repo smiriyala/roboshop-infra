@@ -16,3 +16,7 @@ resource "aws_ssm_parameter" "secrets" {
 # while executing this state file in terraform apply
 variable "parameters" {}
 variable "secrets"{}
+
+provider "aws" {
+    region = "us-east-1"
+}
