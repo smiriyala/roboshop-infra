@@ -12,7 +12,7 @@ git:
 # then come out of it and run resource creation scripts.
 ## NOTE: cd .. doesnt work in makefile, we need to run cd and cmd together
 dev-apply: git
-	
+	rm -rf .terraform
 	cd aws-parameters; terraform init -backend-config=env-dev/state.tfvars
 	cd aws-parameters; terraform apply -auto-approve -var-file=env-dev/main.tfvars
 	terraform init -backend-config=env-dev/state.tfvars
