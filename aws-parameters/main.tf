@@ -1,12 +1,3 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 4.0"
-    }
-  }
-}
-
 resource "aws_ssm_parameter" "parameters" {
     count = length(var.parameters)
     name = var.parameters[count.index].name
