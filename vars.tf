@@ -17,3 +17,6 @@ variable "rabbitmq" {}
 
 ##alb
 variable "alb" {}
+
+#APPS
+variable "apps" {}
