@@ -1,4 +1,5 @@
 env = "dev"
+bastion_cidr = [ "172.31.89.51/32" ] 
 
 
 vpc = {
@@ -113,27 +114,33 @@ alb = {
 apps = {
     catalogue = {
         component = "catalogue"
-        instance_type = "t3.nano"
+        instance_type = "t3.micro"
         desired_capacity   = 1
         max_size           = 4
         min_size           = 1
         subnet_name = "app"
+        port = 8080
+        allow_app_to = "app"
     }
     cart = {
         component = "cart"
-        instance_type = "t3.nano"
+        instance_type = "t3.micro"
         desired_capacity   = 1
         max_size           = 4
         min_size           = 1
         subnet_name = "app"
+        port = 8080
+        allow_app_to = "app"
     }
     user = {
         component = "user"
-        instance_type = "t3.nano"
+        instance_type = "t3.micro"
         desired_capacity   = 1
         max_size           = 4
         min_size           = 1
         subnet_name = "app"
+        port = 8080
+        allow_app_to = "app"
     }
     shipping = {
         component = "shipping"
@@ -142,6 +149,8 @@ apps = {
         max_size           = 4
         min_size           = 1
         subnet_name = "app"
+        port = 8080
+        allow_app_to = "app"
     }
     payment = {
         component = "payment"
@@ -150,13 +159,17 @@ apps = {
         max_size           = 4
         min_size           = 1
         subnet_name = "app"
+        port = 8080
+        allow_app_to = "app"
     }
     frontend = {
         component = "frontend"
-        instance_type = "t3.nano"
+        instance_type = "t3.micro"
         desired_capacity   = 1
         max_size           = 4
         min_size           = 1
         subnet_name = "web"
+        port = 80
+        allow_app_to = "public"
     }
 }

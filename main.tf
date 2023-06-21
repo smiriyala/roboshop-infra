@@ -105,6 +105,8 @@ module "app" {
   env                     = var.env
   source                  = "git::https://github.com/smiriyala/tf-module-app.git"
   tags                    = var.tags
+  bastion_cidr = var.bastion_cidr
+  vpc_id = module.vpc["main"].vpc_id
 
   for_each  = var.apps
   component = each.value["component"]
@@ -113,5 +115,15 @@ module "app" {
   max_size           = each.value["max_size"]
   min_size           = each.value["min_size"]
   subnets           = lookup(local.subnet_ids, each.value["subnet_name"], null)
+  port = each.value["port"]
+  allow_app_to = lookup(local.subnet_cidr, each.value["allow_app_to"], null)
+
   
 }
+
+##to debug to check VPC id is comming out or not?
+# it gives out entire VPC module data out. 
+
+/* output "vpc"{
+  value = module.vpc
+} */
