@@ -90,7 +90,6 @@ module "alb" {
   env                     = var.env
   source                  = "git::https://github.com/smiriyala/tf-module-alb.git"
   tags                    = var.tags
-  name                    = var.name
 
   for_each  = var.alb
   name = each.value["name"]
