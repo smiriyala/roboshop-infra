@@ -21,3 +21,5 @@ variable "alb" {}
 #APPS
 variable "apps" {}
 variable "bastion_cidr" {}
+
+variable "dns_domain" {}
