@@ -21,7 +21,7 @@ module "vpc" {
 
 
 #Creating DocumentDB with cluster
-module "docdb" {
+/* module "docdb" {
   env = var.env
   source = "git::https://github.com/smiriyala/tf-module-docdb.git"
   tags = var.tags
@@ -53,7 +53,7 @@ module "rds" {
   preferred_backup_window = each.value["preferred_backup_window"]
   instance_class          = each.value["instance_class"]
   no_of_instances         = each.value["no_of_instances"]
-  /* skip_final_snapshot     = each.value["skip_final_snapshot"] */
+  #skip_final_snapshot     = each.value["skip_final_snapshot"]
   
 }
 
@@ -127,7 +127,7 @@ module "app" {
   listener_priority = each.value["listener_priority"]
 
   
-}
+} */
 
 ##to debug to check VPC id is comming out or not?
 # it gives out entire VPC module data out. 
