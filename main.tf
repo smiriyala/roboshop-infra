@@ -20,8 +20,8 @@ module "vpc" {
 } */
 
 
-#Creating DocumentDB with cluster
-/* module "docdb" {
+#Creating DocumentDB with cluster'
+module "docdb" {
   env = var.env
   source = "git::https://github.com/smiriyala/tf-module-docdb.git"
   tags = var.tags
@@ -127,7 +127,7 @@ module "app" {
   listener_priority = each.value["listener_priority"]
 
   
-} */
+}
 
 ##to debug to check VPC id is comming out or not?
 # it gives out entire VPC module data out. 
