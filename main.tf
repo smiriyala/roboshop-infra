@@ -71,6 +71,8 @@ module "elasticache" {
   engine_version          = each.value["engine_version"]
   nun_cache_nodes         = each.value["nun_cache_nodes"]
   node_type               = each.value["node_type"]
+  vpc_id                  = module.vpc["main"].vpc_id
+  allow_subnets           = each.value["allow_subnets"]
   
 }
 
