@@ -26,6 +26,7 @@ module "docdb" {
   source = "git::https://github.com/smiriyala/tf-module-docdb.git"
   tags = var.tags
   subnet_ids = local.db_subnet_ids
+  vpc_id  = module.vpc["main"].vpc_id
 
   for_each = var.docdb
   engine = each.value["engine"]
@@ -35,6 +36,7 @@ module "docdb" {
   skip_final_snapshot = each.value["skip_final_snapshot"]
   no_of_instances = each.value["no_of_instances"]
   instance_class = each.value["instance_class"]
+  allow_subnets = lookup(local.subnet_cidr, each.value["allow_subnets"], null)
 
 }
 

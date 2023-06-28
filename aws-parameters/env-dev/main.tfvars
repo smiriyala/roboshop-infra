@@ -11,7 +11,8 @@ parameters = [
   /* Environment=MONGO={{ lookup('aws_ssm', '{{env}}.{{component}}.mongo', region='us-east-1') }}
   Environment=REDIS_HOST={{ lookup('aws_ssm', '{{env}}.{{component}}.redis_host', region='us-east-1') }}
   Environment=MONGO_URL="{{ lookup('aws_ssm', '{{env}}.{{component}}.mongo_url', region='us-east-1') }}" */
-  { name = "dev.user.mongo", value = "true", type = "String" },
+  { name = "dev.user.mongo", value = "false", type = "String" },
+   { name = "dev.catalogue.documentdb", value = "true", type = "String" },
   { name = "dev.user.redis_host", value = "redis-dev.devopsforyou.online", type = "String" },
   { name = "dev.user.mongo_url", value = "mongodb://mongodb-dev.devopsforyou.online:27017/users", type = "String" },
 
@@ -37,7 +38,8 @@ parameters = [
   //Catalogue Serive
   /* Environment=MONGO={{ lookup('aws_ssm', '{{env}}.{{component}}.mongo', region='us-east-1') }}
   Environment=MONGO_URL="{{ lookup('aws_ssm', '{{env}}.{{component}}.mongo_url', region='us-east-1') }}" */
-  { name = "dev.catalogue.mongo", value = "true", type = "String" },
+  { name = "dev.catalogue.mongo", value = "false", type = "String" },
+  { name = "dev.catalogue.documentdb", value = "true", type = "String" },
   { name = "dev.catalogue.mongo_url", value = "mongodb://mongodb-dev.devopsforyou.online:27017/catalogue", type = "String" },
     
    //cart component
