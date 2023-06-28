@@ -3,13 +3,27 @@ resource "aws_ssm_parameter" "parameters" {
     name = var.parameters[count.index].name
     type = var.parameters[count.index].type
     value = var.parameters[count.index].value
+    overwrite = true
+
+    /* lifecycle {
+        ignore_changes = [
+        value,
+        ]
+    } */
 }
 
 resource "aws_ssm_parameter" "secrets" {
-    count = length(var.secrets)
-    name = var.secrets[count.index].name
-    type = var.secrets[count.index].type
-    value = var.secrets[count.index].value
+  count = length(var.secrets)
+  name = var.secrets[count.index].name
+  type = var.secrets[count.index].type
+  value = var.secrets[count.index].value
+  overwrite = true
+
+  /* lifecycle {
+    ignore_changes = [
+      value,
+    ]
+  } */
 }
 
 #This variable values are reading from main.tfvars or whatever you used to pass
