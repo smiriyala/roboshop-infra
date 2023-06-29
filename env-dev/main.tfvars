@@ -156,7 +156,7 @@ apps = {
         listener_priority = 12
         parameters = ["docdb", "elasticache"]
     }
-    shipping = {
+    /* shipping = {
         component = "shipping"
         instance_type = "t3.micro"
         desired_capacity   = 1
@@ -181,7 +181,7 @@ apps = {
         alb = "private"
         listener_priority = 14
         parameters = []
-    }
+    } */
     frontend = {
         component = "frontend"
         instance_type = "t3.small"
