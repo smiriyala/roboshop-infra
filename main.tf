@@ -110,6 +110,9 @@ module "alb" {
 
 #Module APP Server for Load Balancer
 module "app" {
+
+  depends_on = [module.docdb, module.rds, module.elasticache, module.alb, module.rabbitmq]
+
   env                     = var.env
   source                  = "git::https://github.com/smiriyala/tf-module-app.git"
   tags                    = var.tags
