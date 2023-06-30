@@ -147,7 +147,7 @@ apps = {
     }
     user = {
         component = "user"
-        instance_type = "t3.small"
+        instance_type = "t2.medium"
         desired_capacity   = 1
         max_size           = 3
         min_size           = 1
