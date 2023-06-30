@@ -56,6 +56,8 @@ module "rds" {
   instance_class          = each.value["instance_class"]
   no_of_instances         = each.value["no_of_instances"]
   #skip_final_snapshot     = each.value["skip_final_snapshot"]
+  vpc_id  = module.vpc["main"].vpc_id
+  allow_subnets           = lookup(local.subnet_cidr, each.value["allow_subnets"], null)
   
 }
 
@@ -83,9 +85,14 @@ module "rabbitmq" {
   source                  = "git::https://github.com/smiriyala/tf-module-rabbitmq.git"
   tags                    = var.tags
   subnet_ids              = local.db_subnet_ids
+  bastion_cidr            = var.bastion_cidr
+  dns_domain              = var.dns_domain
 
   for_each                = var.rabbitmq
   instance_type    = each.value["instance_type"]
+
+  vpc_id                  = module.vpc["main"].vpc_id
+  allow_subnets           = lookup(local.subnet_cidr, each.value["allow_subnets"], null)
   
 }
 

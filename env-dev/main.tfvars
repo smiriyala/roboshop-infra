@@ -78,6 +78,7 @@ rds = {
       no_of_instances         = 1
       instance_class          = "db.t3.small"
       skip_final_snapshot = "true"
+      allow_subnets = "app"
       
     }
 }
@@ -95,6 +96,7 @@ elasticache = {
 rabbitmq = {
     main = {
         instance_type = "t3.micro"
+        allow_subnets = "app"
     }
 }
 
@@ -121,7 +123,7 @@ apps = {
         component = "catalogue"
         instance_type = "t3.small"
         desired_capacity   = 1
-        max_size           = 2
+        max_size           = 3
         min_size           = 1
         subnet_name = "app"
         port = 8080
@@ -134,7 +136,7 @@ apps = {
         component = "cart"
         instance_type = "t3.small"
         desired_capacity   = 1
-        max_size           = 2
+        max_size           = 3
         min_size           = 1
         subnet_name = "app"
         port = 8080
@@ -147,7 +149,7 @@ apps = {
         component = "user"
         instance_type = "t3.micro"
         desired_capacity   = 1
-        max_size           = 2
+        max_size           = 3
         min_size           = 1
         subnet_name = "app"
         port = 8080
@@ -160,20 +162,20 @@ apps = {
         component = "shipping"
         instance_type = "t3.micro"
         desired_capacity   = 1
-        max_size           = 2
+        max_size           = 3
         min_size           = 1
         subnet_name = "app"
         port = 8080
         allow_app_to = "app"
         alb = "private"
         listener_priority = 13
-        parameters = []
+        parameters = ["rds"]
     }
     payment = {
         component = "payment"
         instance_type = "t3.micro"
         desired_capacity   = 1
-        max_size           = 2
+        max_size           = 3
         min_size           = 1
         subnet_name = "app"
         port = 8080
@@ -186,7 +188,7 @@ apps = {
         component = "frontend"
         instance_type = "t3.small"
         desired_capacity   = 1
-        max_size           = 2
+        max_size           = 3
         min_size           = 1
         subnet_name = "web"
         port = 80

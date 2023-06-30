@@ -19,7 +19,7 @@ parameters = [
   //Shipping serice Details
   /* Environment=CART_ENDPOINT={{ lookup('aws_ssm', '{{env}}.{{component}}.cart_endpoint', region='us-east-1') }},
   Environment=DB_HOST={{ lookup('aws_ssm', '{{env}}.{{component}}.db_host', region='us-east-1') }}, */
-  { name = "dev.shipping.cart_endpoint", value = "cart-dev.devopsforyou.online:8080", type = "String" },
+  { name = "dev.shipping.cart_endpoint", value = "cart-dev.devopsforyou.online:80", type = "String" },
   { name = "dev.shipping.db_host", value = "mysql-dev.devopsforyou.online", type = "String" },
 
 
@@ -30,9 +30,9 @@ parameters = [
   Environment=USER_PORT={{ lookup('aws_ssm', '{{env}}.{{component}}.user_port', region='us-east-1') }}
   Environment=AMQP_HOST={{ lookup('aws_ssm', '{{env}}.{{component}}.amqp_host', region='us-east-1') }} */
   { name = "dev.payment.cart_host", value = "cart-dev.devopsforyou.online", type = "String" },
-  { name = "dev.payment.cart_port", value = "8080", type = "String" },
+  { name = "dev.payment.cart_port", value = "80", type = "String" },
   { name = "dev.payment.user_host", value = "user-dev.devopsforyou.online", type = "String" },
-  { name = "dev.payment.user_port", value = "8080", type = "String" },
+  { name = "dev.payment.user_port", value = "80", type = "String" },
   { name = "dev.payment.amqp_host", value = "rabbitmq-dev.devopsforyou.online", type = "String" },
 
   //Catalogue Serive
@@ -48,7 +48,7 @@ parameters = [
   Environment=CATALOGUE_PORT={{ lookup('aws_ssm', '{{env}}.{{component}}.catalogue_port', region='us-east-1') }} */
   { name = "dev.cart.redis_host", value = "redis-dev.devopsforyou.online", type = "String" },
   { name = "dev.cart.catalogue_host", value = "catalogue-dev.devopsforyou.online", type = "String" },
-  { name = "dev.cart.catalogue_port", value = "8080", type = "String" },
+  { name = "dev.cart.catalogue_port", value = "80", type = "String" },
 
 
   //Dispatch Service
