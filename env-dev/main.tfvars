@@ -132,7 +132,7 @@ apps = {
         listener_priority = 10
         parameters = ["docdb"]
     }
-    cart = {
+    /* cart = {
         component = "cart"
         instance_type = "t3.small"
         desired_capacity   = 1
@@ -196,6 +196,6 @@ apps = {
         alb = "public"
         listener_priority = 10
         parameters = []
-    }
+    } */
 }
 ## forntend lister_priority can start from 10 as it is public, starting on..
