@@ -141,8 +141,43 @@ module "app" {
   listener_priority = each.value["listener_priority"]
   parameters = each.value["parameters"]
 
+  # adding monitor Private IP. 
+  monitoring_nodes = var.monitoring_nodes
   
 }
+
+#=============Starting EC2 Instance to use to generate load using LOAD RUNNER===========
+
+data "aws_ami" "ami" {
+    most_recent = true
+    name_regex = "devops-practice-with-ansible"
+    owners = [ "self" ]
+}
+
+##Createing spot instnace to generate load on application using load runner
+resource "aws_spot_instance_request" "load-runner" {
+  ami           = data.aws_ami.ami.id
+  instance_type = "t3.medium"
+  #using single subnet of public from local subnets.
+  #subnet_id = lookup(local.subnet_ids, "public", null)[0]
+  wait_for_fulfillment = true
+  vpc_security_group_ids = ["allow-all"]
+
+  tags = merge(
+    var.tags,
+    { Name = "load-runner" }
+  )
+}
+
+resource "aws_ec2_tag" "name-tag" {
+    resource_id = aws_spot_instance_request.load-runner.spot_instance_id
+    key = "Name"
+    value = "load-runner" 
+  
+}
+
+
+#============end of load-balancer==============
 
 ##to debug to check VPC id is comming out or not?
 # it gives out entire VPC module data out. 
