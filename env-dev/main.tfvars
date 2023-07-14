@@ -174,7 +174,7 @@ apps = {
     }
     payment = {
         component = "payment"
-        instance_type = "t2.medium"
+        instance_type = "t2.small"
         desired_capacity   = 1
         max_size           = 3
         min_size           = 1
