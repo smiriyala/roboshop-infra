@@ -120,7 +120,7 @@ alb = {
 }
 
 apps = {
-    catalogue = {
+    /* catalogue = {
         component = "catalogue"
         instance_type = "t3.small"
         desired_capacity   = 1
@@ -184,7 +184,7 @@ apps = {
         alb = "private"
         listener_priority = 14
         parameters = ["rabbitmq"]
-    }
+    } */
     frontend = {
         component = "frontend"
         instance_type = "t3.small"
