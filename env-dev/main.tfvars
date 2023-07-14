@@ -120,7 +120,7 @@ alb = {
 }
 
 apps = {
-    /* catalogue = {
+    catalogue = {
         component = "catalogue"
         instance_type = "t3.small"
         desired_capacity   = 1
@@ -133,7 +133,7 @@ apps = {
         listener_priority = 10
         parameters = ["docdb"]
     }
-    cart = {
+    /* cart = {
         component = "cart"
         instance_type = "t3.small"
         desired_capacity   = 1
