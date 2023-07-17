@@ -23,3 +23,19 @@ dev-apply:
 dev-destroy:
 	terraform init -backend-config=env-dev/state.tfvars
 	terraform destroy -auto-approve -var-file=env-dev/main.tfvars
+
+
+##Enabeld for Prod Infrastructure:
+
+prod-apply:
+	rm -rf .terraform
+	cd aws-parameters; terraform init -backend-config=env-prod/state.tfvars
+	cd aws-parameters; terraform apply -auto-approve -var-file=env-prod/main.tfvars
+	terraform init -backend-config=env-prod/state.tfvars
+	terraform apply -auto-approve -var-file=env-prod/main.tfvars
+
+
+# referring above git command as pre-req for dev-destroy command.
+prod-destroy:
+	terraform init -backend-config=env-prod/state.tfvars
+	terraform destroy -auto-approve -var-file=env-prod/main.tfvars
