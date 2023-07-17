@@ -1,4 +1,4 @@
-env = "dev"
+env = "prod"
 bastion_cidr = [ "172.31.89.51/32" ]
 monitoring_nodes = ["172.31.88.248/32"]
 dns_domain = "devopsforyou.online"
