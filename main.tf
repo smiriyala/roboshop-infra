@@ -161,7 +161,7 @@ resource "aws_spot_instance_request" "load-runner" {
   #using single subnet of public from local subnets.
   #subnet_id = lookup(local.subnet_ids, "public", null)[0]
   wait_for_fulfillment = true
-  vpc_security_group_ids = ["allow-all"]
+  vpc_security_group_ids = ["sg-0111cc490d6b33509"]
 
   tags = merge(
     var.tags,
