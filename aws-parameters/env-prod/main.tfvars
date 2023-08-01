@@ -89,6 +89,10 @@ secrets = [
 
     #Adding USSER NAME AND PASSWORDS FOR THE RDS OF tf-module-rds repo
   { name = "prod.rds.user", value = "admin1", type = "SecureString" },
-  { name = "prod.rds.pass", value = "Roboshop1", type = "SecureString" }
+  { name = "prod.rds.pass", value = "Roboshop1", type = "SecureString" }, 
+
+  #Adding USSER NAME AND PASSWORDS FOR NEXUS REPO Details
+  { name = "prod.nexus.user", value = "admin", type = "SecureString" },
+  { name = "prod.nexus.pass", value = "admin123", type = "SecureString" }
 
 ]
