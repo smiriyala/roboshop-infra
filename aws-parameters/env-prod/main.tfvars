@@ -56,7 +56,16 @@ parameters = [
   Environment=AMQP_USER=roboshop
   Environment=AMQP_PASS=roboshop123  
   Environment=AMQP_HOST={{ lookup('aws_ssm', '{{env}}.{{component}}.amqp_host', region='us-east-1') }}*/
-  { name = "prod.dispatch.amqp_host", value = "dispatch-prod.devopsforyou.online", type = "String" }
+  { name = "prod.dispatch.amqp_host", value = "dispatch-prod.devopsforyou.online", type = "String" }, 
+
+  ##Adding APP VERSION from PARAMETERS Store
+  { name = "prod.frontend.app_verion", value = "v1.0.0", type = "String" },
+  { name = "prod.catalogue.app_verion", value = "v1.0.0", type = "String" },
+  { name = "prod.cart.app_verion", value = "v1.0.0", type = "String" },
+  { name = "prod.shipping.app_verion", value = "v1.0.0", type = "String" },
+  { name = "prod.payment.app_verion", value = "v1.0.0", type = "String" },
+  { name = "prod.user.app_verion", value = "v1.0.1", type = "String" },
+  { name = "prod.dispatch.app_verion", value = "v1.0.0", type = "String" }
 
 ] 
 
@@ -94,5 +103,4 @@ secrets = [
   #Adding USSER NAME AND PASSWORDS FOR NEXUS REPO Details
   { name = "prod.nexus.user", value = "admin", type = "SecureString" },
   { name = "prod.nexus.pass", value = "admin123", type = "SecureString" }
-
 ]
