@@ -81,6 +81,7 @@ module "elasticache" {
 #RabbitMQ - rathar than using aws service, we are creating EC2 Instance as Service doesnt 
 # Support to create cluster environment?
 module "rabbitmq" {
+  depends_on              = [module.vpc]
   env                     = var.env
   source                  = "git::https://github.com/smiriyala/tf-module-rabbitmq.git"
   tags                    = var.tags
