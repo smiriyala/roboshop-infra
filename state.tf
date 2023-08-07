@@ -2,6 +2,6 @@ terraform {
   backend "s3" {}
 }
 
-provider "aws" {
+/* provider "aws" {
     region = "us-east-1"
-}
+} */
