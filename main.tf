@@ -195,7 +195,7 @@ resource "aws_ec2_tag" "name-tag" {
 module "minikube" {
   source = "github.com/scholzj/terraform-aws-minikube"
 
-  aws_region    = "es-east-1"
+  aws_region    = "us-east-1"
   cluster_name  = "minikube"
   aws_instance_type = "t3.medium"
   ssh_public_key = "~/.ssh/id_rsa.pub"
