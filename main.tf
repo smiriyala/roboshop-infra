@@ -19,6 +19,8 @@ module "vpc" {
   
 } */
 
+/*
+# Commented to Add KUBRENETES NODE. 
 
 #Creating DocumentDB with cluster'
 module "docdb" {
@@ -186,3 +188,37 @@ resource "aws_ec2_tag" "name-tag" {
 /* output "vpc"{
   value = module.vpc
 } */
+
+/* # Commented to end of KUBRENETES NODE. 
+*/
+
+module "minikube" {
+  source = "github.com/scholzj/terraform-aws-minikube"
+
+  aws_region    = "es-east-1"
+  cluster_name  = "minikube"
+  aws_instance_type = "t3.medium"
+  ssh_public_key = "~/.ssh/id_rsa.pub"
+  aws_subnet_id = lookup(local.subnet_ids, "public", null)[0]
+  hosted_zone = var.dns_domain
+  hosted_zone_private = false
+
+  tags = {
+    Name = "Minikube"
+  }
+
+  addons = [
+    "https://raw.githubusercontent.com/scholzj/terraform-aws-minikube/master/addons/storage-class.yaml",
+    "https://raw.githubusercontent.com/scholzj/terraform-aws-minikube/master/addons/heapster.yaml",
+    "https://raw.githubusercontent.com/scholzj/terraform-aws-minikube/master/addons/dashboard.yaml",
+    "https://raw.githubusercontent.com/scholzj/terraform-aws-minikube/master/addons/external-dns.yaml"
+  ]
+}
+
+output "MINIKUBE_SERVER" {
+  value = "ssh centos@${module.minikube.public.ip}"
+}
+
+output "KUBE_CONFIG" {
+  value = "scp centos@${module.minikube.public_ip}:/home/centos/kubeconfig ~/.kube/config"
+}
