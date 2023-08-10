@@ -190,7 +190,7 @@ resource "aws_ec2_tag" "name-tag" {
 } */
 
 /* # Commented to end of KUBRENETES NODE. 
-*/
+
 
 module "minikube" {
   source = "github.com/scholzj/terraform-aws-minikube"
@@ -222,3 +222,18 @@ output "MINIKUBE_SERVER" {
 output "KUBE_CONFIG" {
   value = "scp centos@${module.minikube.public_ip}:/home/centos/kubeconfig ~/.kube/config"
 }
+
+*/ 
+# Commented to end of KUBRENETES NODE. 
+
+###### 3rd party tf-module-eks execution which works on kubergrunt
+
+module "eks" {
+  source             = "github.com/r-devops/tf-module-eks"
+  ENV                = var.env
+  PRIVATE_SUBNET_IDS = lookup(local.subnet_ids, "app", null)
+  PUBLIC_SUBNET_IDS  = lookup(local.subnet_ids, "public", null)
+  DESIRED_SIZE       = 1
+  MAX_SIZE           = 1
+  MIN_SIZE           = 1
+} */
