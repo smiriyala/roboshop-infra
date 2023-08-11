@@ -19,7 +19,7 @@ module "vpc" {
   
 } */
 
-/*
+
 # Commented to Add KUBRENETES NODE. 
 
 #Creating DocumentDB with cluster'
@@ -98,6 +98,8 @@ module "rabbitmq" {
   allow_subnets           = lookup(local.subnet_cidr, each.value["allow_subnets"], null)
   
 }
+
+/*
 
 #Module Load Balancer
 module "alb" {

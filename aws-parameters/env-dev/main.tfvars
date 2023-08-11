@@ -12,7 +12,7 @@ parameters = [
   Environment=REDIS_HOST={{ lookup('aws_ssm', '{{env}}.{{component}}.redis_host', region='us-east-1') }}
   Environment=MONGO_URL="{{ lookup('aws_ssm', '{{env}}.{{component}}.mongo_url', region='us-east-1') }}" */
   { name = "dev.user.mongo", value = "false", type = "String" },
-   { name = "dev.user.documentdb", value = "true", type = "String" },
+  { name = "dev.user.documentdb", value = "true", type = "String" },
   { name = "dev.user.redis_host", value = "redis-dev.devopsforyou.online", type = "String" },
   { name = "dev.user.mongo_url", value = "mongodb://mongodb-dev.devopsforyou.online:27017/users", type = "String" },
 
